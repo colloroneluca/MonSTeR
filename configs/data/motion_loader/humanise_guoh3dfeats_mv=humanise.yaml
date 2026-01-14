@@ -1,0 +1,16 @@
+defaults:
+  - _self_
+
+
+
+base_dir: datasets/HUMANISE+/data
+fps: 20.0
+nfeats: 263
+
+_target_: src.data.motion.AMASSMotionLoader
+
+
+normalizer:
+  _target_: src.data.motion.Normalizer
+  base_dir: "stats/HUMANISE+/humanise_guoh3dfeats"
+  eps: 1e-12

@@ -1,0 +1,68 @@
+_target_: src.model.TEMOS
+
+motion_encoder:
+  _target_: src.model.ACTORStyleMotionEncoder
+  nfeats: 66 #${data.motion_loader.nfeats}
+  vae: true
+  latent_dim: 768
+  ff_size: 1024
+  num_layers: 6
+  num_heads: 4
+  dropout: 0.1
+  operator: false
+  activation: gelu
+
+ts_encoder: 
+  _target_: src.model.mlp
+  in_features: 1024
+  out_features: 512
+  n_layer: 2
+  batch_norm: false
+  activation: relu
+
+tm_encoder: 
+  _target_: src.model.mlp
+  in_features: 1024
+  out_features: 512
+  n_layer: 2
+  batch_norm: false
+  activation: relu
+
+ms_encoder: 
+  _target_: src.model.mlp
+  in_features: 1024
+  out_features: 512
+  n_layer: 2
+  batch_norm: false
+  activation: relu
+
+text_encoder:
+  _target_: src.model.ACTORStyleTextEncoder
+  nfeats: 768
+  vae: true
+  latent_dim: 768
+  ff_size: 1024
+  num_layers: 6
+  num_heads: 4
+  dropout: 0.1
+  operator: false
+  activation: gelu
+
+motion_decoder:
+  _target_: src.model.ACTORStyleDecoder
+  nfeats: 66 #${data.motion_loader.nfeats}
+  latent_dim: 256
+  ff_size: 1024
+  num_layers: 6
+  num_heads: 4
+  dropout: 0.1
+  activation: gelu
+
+vae: true
+
+lmd:
+  recons: 1.0
+  latent: 1.0e-5
+  kl: 1.0e-5
+
+lr: 1e-4

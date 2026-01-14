@@ -1,0 +1,36 @@
+defaults:
+  - temos_3dVista #temos or temos_transf or temos_feats
+  - _self_
+
+_target_: src.model.MonSTeR
+
+lmd:
+  recons: 1.0
+  latent: 1.0e-5 #defaul 1.0e-5
+  kl: 1.0e-5
+  contrastive: 1.0 #default 0.1
+  crop: 1.0 #weight for the Binary cross entropy of the scene decoder
+
+lr: 1e-5
+temperature: 0.1 
+threshold_selfsim: 0.8 #0.8 #0.8q
+threshold_selfsim_metrics: 0.95 #0.95
+#############################
+baseline: true 
+no_single: false
+two_level: false
+# text as bridge is a variant of the vanilla, where everything is aligned to the text
+bridge: 't' #t, m, s, all
+
+
+#############################
+# Cross_mod_eval defines how to create similarity matrices for cross_mod eval: 
+# Below t2m = sim(t,m) 
+# Ex mean --->  ts2m = mean(t2m,s2m) 
+# Ex sum_lat_infer ---> ts2m = sim(t+s,m)
+# Options: mean, max, norm-max, norm-mean, sum_lat_infer, false, NB=use "JE" if using 3-headed-JE
+
+cross_mod_eval: 'mean'
+ckpt_name: 'outputs/TMR/models/tmr_humanml3d_guoh3dfeats/last_weights'
+train_dl_len: 0
+total_steps: 0

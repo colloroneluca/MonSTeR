@@ -1,0 +1,5 @@
+_target_: src.model.SelfAttention
+in_features: 1024
+out_features: 512
+n_layer: 2
+batch_norm: true

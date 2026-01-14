@@ -1,0 +1,7 @@
+_target_: src.model.transformer
+latent_dim: 256
+num_heads: 8
+ff_size: 512
+num_layers: 6
+dropout: 0.1
+activation: 'gelu'

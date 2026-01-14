@@ -1,0 +1,18 @@
+
+defaults:
+  - defaults
+  - _self_
+  - data: humanise.yaml #trumans.yaml #humanise.yaml #goal_dist.yaml 
+  - model: MonSTeR
+  - trainer
+  - defaults
+device: cuda:0
+
+run_dir: ???
+protocol: all_no_nsim #all_no_nsim #  (is all 4), normal (a), threshold (b), nsim (c), guo (d)
+threshold: 0.95 # threashold to compute (b)
+outputs: 'outputs'
+ckpt: last
+id: null
+filter_metrics: null
+

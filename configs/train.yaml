@@ -1,0 +1,26 @@
+ckpt: last
+resume_dir: null
+
+run_dir: outputs/${hydra:runtime.choices.model}_${hydra:runtime.choices.data}
+debug: false
+offline_logging: false
+dataloader_train:
+  _target_: torch.utils.data.DataLoader
+  batch_size: 16
+  num_workers: 12
+  pin_memory: true
+  prefetch_factor: 4
+dataloader_val:
+  _target_: torch.utils.data.DataLoader
+  batch_size: 32
+  num_workers: 12
+  pin_memory: true
+  prefetch_factor: 4
+
+defaults:
+  - data: humanise.yaml #trumans.yaml #humanise.yaml #goal_dist.yaml 
+  - model: MonSTeR
+  - trainer
+  - defaults
+  - _self_
+

@@ -1,0 +1,27 @@
+{
+  "pretrained": "outputs/ThreeDVista_weights/pretrain.pth",
+   "projection_dim": [768,256],
+   "n_feats": 6,
+
+  "point_enc_params": {
+    "backbone": "pointnet++",
+    "hidden_size": 768,
+    "path": null,
+    "freeze_feature": false,
+    "num_attention_heads": 12,
+    "spatial_dim": 5,
+    "num_layers": 4,
+    "dim_loc": 6,
+    "pairwise_rel_type": "center",
+    "mixup_strategy": "linear_decay",
+    "mixup_stage1": 0.2,
+    "mixup_stage2": 0.4
+  },
+
+  "unified_enc_params": {
+    "hidden_size": 768,
+    "num_attention_heads": 12,
+    "num_layers": 4,
+    "dim_loc": 6
+  }
+}

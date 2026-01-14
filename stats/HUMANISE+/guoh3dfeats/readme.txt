@@ -1,0 +1,1 @@
+mean and std are the same of humanml3d

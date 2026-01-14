@@ -1,0 +1,66 @@
+defaults:
+  - _self_
+
+motion_loader: 
+  nfeats: 263
+
+# Specify the dataset class to instantiate
+_target_: src.data.trumans.TrumansDataset
+# Parameters required by TrumansDataset.__init__()
+cfg:
+  dataset:
+    dataset_name: Trumans
+    data_root: ./datasets/Trumans
+    object_folder: ./datasets/Trumans/Object_all
+    scene_mesh_folder: ./datasets/Trumans/Scene_mesh
+    action_filepath: ./datasets/Trumans/actions.json
+    joints_filepath: ./datasets/Trumans/human_joints.npy
+    global_orient_filepath: ./datasets/Trumans/human_orient.npy
+    translation_filepath: ./datasets/Trumans/human_transl.npy
+    emb_dir: ./datasets/Trumans/sent_embeddings/sentence-transformers/all-mpnet-base-v2_recaptioning
+    all_actions_path: ./datasets/Trumans/annotations/trumans #./datasets/Trumans/annotations/trumans #note: must be the same as annotations!
+    use_joints: true
+    use_clip: false
+    crop_scene: false
+    # Motion parameters
+
+    max_motion_length: 224
+    fps: 30.0
+
+    # Caption parameters
+    use_recaptioning: false  # If true, loads the recaptioned annotations instead of normal text
+
+    # Scene parameters
+    max_points: 20000
+
+    # Learning rate factors, specific to the dataset
+    motion_lr_factor: 10.0
+    text_lr_factor: 1.0
+    scene_lr_factor: 1.0
+    joint_lr_factor: 1.0
+    head_lr_factor: 10.0
+  preprocess:
+      padding: true
+
+motion_loader_abs_rel: false
+relative_pos: true
+mean: 0
+std: 0
+split_path: ./datasets/Trumans
+eval_mode: false
+patch_size: 16
+fps: true  # or set to the desired FPS value
+
+use_affordances: False
+
+text_to_token_emb:
+  _target_: src.data.text.TokenEmbeddings
+  path: datasets/Trumans/annotations/trumans
+  modelname: distilbert-base-uncased
+  preload: true
+
+text_to_sent_emb:
+  _target_: src.data.text.SentenceEmbeddings
+  path: datasets/Trumans/annotations/trumans
+  modelname: sentence-transformers/all-mpnet-base-v2
+  preload: true

@@ -1,0 +1,31 @@
+defaults:
+- motion_loader: humanise_guoh3dfeats_mv=humanise
+- _self_
+
+_target_: src.data.text_motion.TextMotionDataset
+
+path: datasets/HUMANISE+/annotations/humanise_recaptioned
+#LC: Added
+motion_loader:
+  base_dir: datasets/HUMANISE+/data
+
+scenes_path:  datasets/HUMANISE+/data # ignored if use_affordance is true
+
+#
+text_to_token_emb:
+  _target_: src.data.text.TokenEmbeddings
+  path: datasets/HUMANISE+/annotations/humanise_recaptioned
+  modelname: distilbert-base-uncased
+  preload: true
+
+text_to_sent_emb:
+  _target_: src.data.text.SentenceEmbeddings
+  path: datasets/HUMANISE+/annotations/humanise_recaptioned
+  modelname: sentence-transformers/all-mpnet-base-v2_recaptioning
+  preload: true
+
+preload: true
+
+# augmentation scene
+transform: false
+# load xyz
