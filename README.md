@@ -69,7 +69,7 @@ MonSTeR
 
 ### Datasets and checkpoints
 
-The checkpoints and data can be downloaded at this link: TBA.
+The checkpoints and data can be downloaded at this link: https://forms.gle/F6fer5TPLYSi3PxZ7.
 
 - Place checkpoints under `outputs/`.
 - Place datasets under `datasets/`.
